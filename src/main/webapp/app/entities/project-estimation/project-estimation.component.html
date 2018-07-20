@@ -1,0 +1,68 @@
+<div>
+    <h2>
+        <span>Project Estimations</span>
+        <button class="btn btn-primary float-right jh-create-entity create-project-estimation" [routerLink]="['/', { outlets: { popup: ['project-estimation-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Project Estimation
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="projectEstimations">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Project</span></th>
+            <th><span>Phase</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let projectEstimation of projectEstimations ;trackBy: trackId">
+                <td><a [routerLink]="['../project-estimation', projectEstimation.id ]">{{projectEstimation.id}}</a></td>
+                <td>
+                    <div *ngIf="projectEstimation.projectId">
+                        <a [routerLink]="['../project', projectEstimation.projectId  ]" >{{projectEstimation.projectId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="projectEstimation.phaseId">
+                        <a [routerLink]="['../phase', projectEstimation.phaseId  ]" >{{projectEstimation.phaseId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../project-estimation', projectEstimation.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'project-estimation/'+ projectEstimation.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'project-estimation/'+ projectEstimation.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

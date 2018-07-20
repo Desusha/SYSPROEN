@@ -1,0 +1,170 @@
+<p-fieldset legend="Project Setup">
+    <p-toolbar>
+        <div class="ui-toolbar-group-left">
+            <button pButton type="button" label="Save" icon="fa-save"></button>
+            <button pButton type="button" label="Pending" icon="fa-dot-circle-o"></button>
+
+            <i class="fa fa-bars"></i>
+            <button pButton type="button" label="Set as Template" icon="fa-dot-circle-o"></button>
+
+            <!-- <p-splitButton label="Save" icon="fa-check" [model]="items"></p-splitButton> -->
+            <button pButton type="button" label="Cancel Project" icon="fa-dot-circle-o"></button>
+        </div>
+
+        <!-- <div class="ui-toolbar-group-right">
+            <button pButton type="button" icon="fa-search"></button>
+            <i class="fa fa-bars"></i>
+            <button pButton type="button" icon="fa-refresh"></button>
+            <button pButton type="button" icon="fa-trash"></button>
+        </div> -->
+    </p-toolbar>
+    <br/>
+    <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-6">
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon ui-g-1 ui-md-1">
+                    <i class="fa fa-user"></i>
+                </span>
+                <input type="text" pInputText placeholder="Project Name" class="ui-g-12 ui-md-8">
+            </div>
+        </div>
+    </div>
+    <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-6">
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon ui-g-1 ui-md-1">
+                    <i class="fa fa-audio-description"></i>
+                </span>
+                <input type="text" pInputText placeholder="Project Description" class="ui-g-12 ui-md-8">
+            </div>
+        </div>
+    </div>
+    <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-6">
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon ui-g-1 ui-md-1">
+                    <i class="fa fa-calendar"></i>
+                </span>
+                <input type="Date" pInputText placeholder="Project Start Date" class="ui-g-12 ui-md-8">
+            </div>
+        </div>
+    </div>
+    <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-6">
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon ui-g-1 ui-md-1">
+                    <i class="fa fa-calendar"></i>
+                </span>
+                <input type="Date" pInputText placeholder="Project End Date" class="ui-g-12 ui-md-8">
+            </div>
+        </div>
+    </div>
+
+    <p-tabView [activeIndex]="index">
+        <p-tabPanel header="Project Phase">
+            <button pButton type="button" label="Add" icon="fa-plus"  [routerLink]="['/', { outlets: { popup: 'project-addPhase'} }]" ></button>
+        </p-tabPanel>
+        <p-tabPanel header="Project Estmation">
+            <button pButton type="button" label="Add" icon="fa-plus"></button>
+        </p-tabPanel>
+        <p-tabPanel header="Over all">
+            <button pButton type="button" label="Add" icon="fa-plus"></button>
+            <!-- <p-table [columns]="cols" [value]="projects">
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th *ngFor="let col of columns">
+                            {{col.header}}
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                    <tr>
+                        <td *ngFor="let col of columns">
+                            {{rowData[col.field]}}
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table> -->
+        </p-tabPanel>
+        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="openPrev()">
+            <span class="fa fa-chevron-circle-left"></span>&nbsp;
+            <span>Back</span>
+        </button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="openPrev()">
+            <span class="fa fa-chevron-circle-right"></span>&nbsp;
+            <span>Next</span>
+        </button> -->
+
+    </p-tabView>
+
+    <!-- <div class="modal-header">
+        <h4 class="modal-title" id="myProjectLabel">Create or edit a Project</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div> -->
+    <!-- <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!project.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="project.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_projectNo">Project No</label>
+            <input type="text" class="form-control" name="projectNo" id="field_projectNo"
+                [(ngModel)]="project.projectNo" required/>
+            <div [hidden]="!(editForm.controls.projectNo?.dirty && editForm.controls.projectNo?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.projectNo?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="project.name" required/>
+            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                [(ngModel)]="project.description" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_startDate">Start Date</label>
+            <div class="input-group">
+                <input id="field_startDate" type="text" class="form-control" name="startDate" ngbDatepicker  #startDateDp="ngbDatepicker" [(ngModel)]="project.startDate"
+                />
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="startDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_endDate">End Date</label>
+            <div class="input-group">
+                <input id="field_endDate" type="text" class="form-control" name="endDate" ngbDatepicker  #endDateDp="ngbDatepicker" [(ngModel)]="project.endDate"
+                />
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="endDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_status">Status</label>
+            <select class="form-control" name="status" [(ngModel)]="project.status" id="field_status" >
+                <option value="UNSIGNED">UNSIGNED</option>
+                <option value="SIGNED">SIGNED</option>
+                <option value="CLOSED">CLOSED</option>
+            </select>
+        </div>
+
+    </div> -->
+
+</p-fieldset>

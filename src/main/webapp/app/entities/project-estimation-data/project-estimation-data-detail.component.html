@@ -1,0 +1,46 @@
+
+<div *ngIf="projectEstimationData">
+    <h2><span>Project Estimation Data</span> {{projectEstimationData.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Number Of Unit</span></dt>
+        <dd>
+            <span>{{projectEstimationData.numberOfUnit}}</span>
+        </dd>
+        <dt><span>Unit Price</span></dt>
+        <dd>
+            <span>{{projectEstimationData.unitPrice}}</span>
+        </dd>
+        <dt><span>Total Price</span></dt>
+        <dd>
+            <span>{{projectEstimationData.totalPrice}}</span>
+        </dd>
+        <dt><span>Cost Code</span></dt>
+        <dd>
+            <div *ngIf="projectEstimationData.costCodeId">
+                <a [routerLink]="['/cost-code', projectEstimationData.costCodeId]">{{projectEstimationData.costCodeId}}</a>
+            </div>
+        </dd>
+        <dt><span>Project</span></dt>
+        <dd>
+            <div *ngIf="projectEstimationData.projectId">
+                <a [routerLink]="['/project-estimation', projectEstimationData.projectId]">{{projectEstimationData.projectId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'project-estimation-data/'+ projectEstimationData.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>
