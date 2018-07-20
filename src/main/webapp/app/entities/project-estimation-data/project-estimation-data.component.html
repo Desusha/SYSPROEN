@@ -1,0 +1,74 @@
+<div>
+    <h2>
+        <span>Project Estimation Data</span>
+        <button class="btn btn-primary float-right jh-create-entity create-project-estimation-data" [routerLink]="['/', { outlets: { popup: ['project-estimation-data-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Project Estimation Data
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="projectEstimationData">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Number Of Unit</span></th>
+            <th><span>Unit Price</span></th>
+            <th><span>Total Price</span></th>
+            <th><span>Cost Code</span></th>
+            <th><span>Project</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let projectEstimationData of projectEstimationData ;trackBy: trackId">
+                <td><a [routerLink]="['../project-estimation-data', projectEstimationData.id ]">{{projectEstimationData.id}}</a></td>
+                <td>{{projectEstimationData.numberOfUnit}}</td>
+                <td>{{projectEstimationData.unitPrice}}</td>
+                <td>{{projectEstimationData.totalPrice}}</td>
+                <td>
+                    <div *ngIf="projectEstimationData.costCodeId">
+                        <a [routerLink]="['../cost-code', projectEstimationData.costCodeId  ]" >{{projectEstimationData.costCodeId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="projectEstimationData.projectId">
+                        <a [routerLink]="['../project-estimation', projectEstimationData.projectId  ]" >{{projectEstimationData.projectId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../project-estimation-data', projectEstimationData.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'project-estimation-data/'+ projectEstimationData.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'project-estimation-data/'+ projectEstimationData.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
